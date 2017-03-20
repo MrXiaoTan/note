@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="button" id="btn" value="免费获取验证码"/>
+<script type="text/javascript">
+    var popupCode = {
+        wait: 10,
+        time: function (o) {
+            if (this.wait == 0) {
+                o.removeAttribute("disabled");
+                o.value = "免费获取验证码";
+                this.wait = 10;
+            }
+            else {
+                o.setAttribute("disabled", true);
+                o.value = "重新发送(" + this.wait + ")";
+                this.wait--;
+                setTimeout(function () {
+                        popupCode.time(o)
+                    },
+                    1000)
+            }
+        }
+    }
+
+
+    document.getElementById("btn").onclick = function () {
+        popupCode.time(this);
+    }
+</script>
+</body>
+</html>
